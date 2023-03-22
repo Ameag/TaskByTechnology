@@ -25,7 +25,7 @@ namespace Tecjnology.tasks
                 Console.Write(ex.Message);
                 System.Environment.Exit(1);
             }
-            
+            SymbolCount(input);
             var isEven = input.Length % 2 == 0;
             var result = isEven ? Even(input) : Inaccurate(input);
             Console.WriteLine("Result: {0}",result); 
@@ -71,13 +71,31 @@ namespace Tecjnology.tasks
                 invalidCharacters.Add(character);
             }
 
-            if (invalidCharacters.Count == 0) 
+            if (invalidCharacters.Count > 0) 
             {
                 string unsuitableСharacters = string.Join(" ", invalidCharacters);
                 throw new Exception(string.Format("invalid characters entered: {0} ", unsuitableСharacters));
             }
 
 
+        }
+
+        private void SymbolCount(string str)
+        {
+            Dictionary<char, int> symbols = new Dictionary<char, int>();
+            foreach (char s in str)
+            {
+                if (symbols.ContainsKey(s))
+                {
+                    symbols[s] += 1;
+                    continue;
+                }
+                symbols.Add(s, 1);
+            }
+            foreach (var m in symbols)
+            {
+                Console.WriteLine($"Symbol: {m.Key}   Count: {m.Value}");
+            }
         }
     }
 }
