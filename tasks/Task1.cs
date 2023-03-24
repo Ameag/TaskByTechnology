@@ -25,10 +25,14 @@ namespace Tecjnology.tasks
                 Console.Write(ex.Message);
                 System.Environment.Exit(1);
             }
+
             SymbolCount(input);
             var isEven = input.Length % 2 == 0;
             var result = isEven ? Even(input) : Inaccurate(input);
-            Console.WriteLine("Result: {0}",result); 
+            SubstringSearch(result);
+            Console.WriteLine("Result: {0}",result);
+            string resultSubstring = SubstringSearch(result);
+            Console.WriteLine("Final substring: {0}", resultSubstring);
         }
 
         private string Even(string str)
@@ -96,6 +100,40 @@ namespace Tecjnology.tasks
             {
                 Console.WriteLine($"Symbol: {m.Key}   Count: {m.Value}");
             }
+        }
+
+        private string SubstringSearch(string str)
+        {
+            const string givenLine = "aeiouy";
+            var substring = "";
+            int startingIndex = 0;
+            int endIndex = 0;
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                var ch = str[i];
+                if (givenLine.Contains(ch))
+                {
+                    startingIndex = i;
+                    break;
+                }
+            }
+
+            for (int i = str.Length - 1; i > 0; i--)
+            {
+                var ch = str[i];
+                if (givenLine.Contains(ch))
+                {
+                    endIndex = i;
+                    break;
+                }
+            }
+
+            for (int i = startingIndex; i <= endIndex; i++)
+            {
+                substring = substring + str[i];
+            }
+            return substring;
         }
     }
 }
