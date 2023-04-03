@@ -1,11 +1,25 @@
-﻿using Tecjnology.tasks;
+var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 
-Console.WriteLine("Hello Maxim Technology");
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-ITask[] tasks = {new Task1()};
-for(int i=0; i<tasks.Length; i++)
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    var task = tasks[i];
-    task.Execute();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
