@@ -10,7 +10,6 @@ namespace TechnologyASP.Controllers
         [HttpGet("{input}/{sort}")]
         public async Task <ActionResult<ModelsOutputString>> GetResult(string input,string sort)
         {
-
             Execute execute= new();
 
             try
@@ -23,9 +22,7 @@ namespace TechnologyASP.Controllers
             }
             catch (Exception ex)
             {
-                Console.Write(ex.Message);
-                execute.BadRequest();
-                return new ModelsOutputString() { BadSymbol=execute.StringСheck(input)};
+                return BadRequest(ex.Message);
             }
 
             var isEven = input.Length % 2 == 0;
@@ -57,7 +54,12 @@ namespace TechnologyASP.Controllers
             string removedString=execute.DeleteSymbol(result, number);
             
 
-            return new ModelsOutputString() { Input=input,Result=result,SymbolCount=execute.SymbolCount(input),FinalSubstring=resultSubstring,SortedString=sortdString,RemovedString= removedString};
+            return new ModelsOutputString() 
+            { Input=input,Result=result,
+              SymbolCount=execute.SymbolCount(input),
+              FinalSubstring=resultSubstring,
+              SortedString=sortdString,
+              RemovedString= removedString};
         }
 
         

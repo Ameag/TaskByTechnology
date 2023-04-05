@@ -10,7 +10,6 @@ namespace TechnologyASP.Models
         public string? FinalSubstring { get; set; }
         public string? SortedString { get; set; }
         public string? RemovedString { get; set; }
-        public HashSet<char>? BadSymbol { get; set; }
     }
 
 }
