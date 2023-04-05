@@ -1,6 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
+using System.Reflection.PortableExecutable;
+using System.Text.Json;
+using TechnologyASP.Models;
 
 namespace TechnologyASP
 {
@@ -51,6 +57,19 @@ namespace TechnologyASP
             {
                 string unsuitableСharacters = string.Join(" ", invalidCharacters);
                 throw new Exception(string.Format("invalid characters entered: {0} ", unsuitableСharacters));
+            }
+            List<string> blackList = new List<string>();
+            string body;
+            string fileName = "C:\\Users\\nekqg\\source\\repos\\WebApplication1\\WebApplication1\\appsettings.json";
+            using (TextReader fs = new StreamReader(fileName))
+            {
+                body = fs.ReadToEnd();
+                SettingJson? setting = JsonConvert.DeserializeObject<SettingJson>(body);
+                blackList = setting.Settings.BlackList;
+            }
+            if (blackList.IndexOf(str)!=-1)
+            {
+                throw new Exception(string.Format("invalid input, string is blacklisted: {0} ", str));
             }
             return invalidCharacters;
 
@@ -168,7 +187,16 @@ namespace TechnologyASP
 
         public int GetNumberApi(string str)
         {
-            string url = string.Format("https://www.random.org/integers/?num=1&min=1&max={0}&col=1&base=10&format=plain&rnd=new", str.Length);
+            string url = "";
+            string fileName = "C:\\Users\\nekqg\\source\\repos\\WebApplication1\\WebApplication1\\appsettings.json";
+            string body;
+            using (TextReader fs = new StreamReader(fileName))
+            {
+                body = fs.ReadToEnd();
+                SettingJson? setting = JsonConvert.DeserializeObject<SettingJson>(body);
+                url = string.Format(setting.RandomApi,str.Length);
+            }
+
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
             if (httpWebResponse.StatusCode != HttpStatusCode.OK)
@@ -197,7 +225,6 @@ namespace TechnologyASP
         public int BadRequest()
         {
             return StatusCodes.Status400BadRequest;
-            //return HttpStatusCode.BadRequest;
         }
         
 

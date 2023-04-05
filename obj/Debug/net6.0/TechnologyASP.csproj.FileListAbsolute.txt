@@ -30,3 +30,8 @@ C:\Users\nekqg\source\repos\WebApplication1\WebApplication1\obj\Debug\net6.0\ref
 C:\Users\nekqg\source\repos\WebApplication1\WebApplication1\obj\Debug\net6.0\TechnologyASP.pdb
 C:\Users\nekqg\source\repos\WebApplication1\WebApplication1\obj\Debug\net6.0\TechnologyASP.genruntimeconfig.cache
 C:\Users\nekqg\source\repos\WebApplication1\WebApplication1\obj\Debug\net6.0\ref\TechnologyASP.dll
+C:\Users\nekqg\source\repos\WebApplication1\WebApplication1\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\nekqg\source\repos\WebApplication1\WebApplication1\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\nekqg\source\repos\WebApplication1\WebApplication1\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\nekqg\source\repos\WebApplication1\WebApplication1\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\nekqg\source\repos\WebApplication1\WebApplication1\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
